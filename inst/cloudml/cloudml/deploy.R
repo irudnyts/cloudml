@@ -2,6 +2,8 @@ Sys.setenv(R_CONFIG_ACTIVE = "cloudml")
 
 # required R packages
 CRAN <- c(
+  "remotes",
+  "Matrix",
   "purrr",
   "modelr",
   "tensorflow",
@@ -195,7 +197,11 @@ retrieve_default_packages <- function() {
   for (pkg in CRAN) {
     if (pkg %in% installed)
       next
-    install.packages(pkg)
+    if (pkg == "Matrix") {
+      remotes::install_github("cran/Matrix", ref = "13baa50")
+    } else {
+      install.packages(pkg)
+    }
   }
 }
 
