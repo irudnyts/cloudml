@@ -120,7 +120,8 @@ if (file.exists("/etc/issue")) {
   message(paste0("Versioning cache as: ", cache))
 }
 
-use_packrat <- !identical(job_config[["packrat"]], FALSE)
+# use_packrat <- !identical(job_config[["packrat"]], FALSE)
+use_packrat <- FALSE
 
 get_cached_bundles <- function (source) {
   cached_entries <- system2("gsutil", c("ls", source), stdout = TRUE, stderr = FALSE)
